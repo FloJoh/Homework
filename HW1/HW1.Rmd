@@ -1,9 +1,61 @@
 ---
 title: "HW1"
+author: "Florian John Date:"
+date: "`r Sys.Date()`"
 output: github_document
-date: "2022-11-06"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = F)
 ```
+
+```{r}
+library(ggplot2)
+```
+
+
+# Summary 
+In this assignment I will explain my previous experiences with R, RStudio, R Markdown, Git, Github, ggplot2 and dplyr. 
+
+After this i will use ggplot to visualize a data-set fetched from the internet. 
+
+# Task 1 
+
+\textit{prior experiences:}
+
+My experiences working with R, RStudio and R Markdown has been limited to projects assignments associated with a few statistical courses relating to inference theory and linear-statistical-models.
+I have therefore worked with optimization methods, visualizing data and model selection among other things.
+
+I do not have experience working with Git, Github, ggplot2 and dplyr however i do know that Github is used during collaborative efforts when working on code online.
+
+# Task 2
+
+\textit{Visualisation of data using ggplot:}
+
+We search for a free data-set online and find a data-set containing information about yield, fertilizer-type and water height on Github 
+(link: https://raw.githubusercontent.com/Opensourcefordatascience/Data-sets/master/crop_yield.csv).
+
+Using the link to the raw csv file on github we use the read.csv function to obtain a dataset which we name df.
+
+```{r}
+set.seed(980205) #my date of birth
+link <- "https://raw.githubusercontent.com/Opensourcefordatascience/Data-sets/master/crop_yield.csv"
+df <- read.csv(link)
+```
+
+We now plot the data using the ggplot function in order to observe the relations between data in the data-set.
+
+```{r}
+library(ggplot2)
+gg <- ggplot(df,aes(Water,Yield,colour = Fert))
+gg <- gg + geom_point()
+gg + labs(title = "Yield graph",
+          caption = "Figure 1: Graph representing Yield based off water height and fertilizer type")
+```
+
+From figure 1 it seems that yield increases when the water level is "High" and the Fertilizer type is "A".
+
+```{r}
+sessionInfo()
+```
+
